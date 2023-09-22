@@ -13,17 +13,12 @@ namespace App\Controller;
 
 use SDPMlab\Anser\Service\ServiceList;
 use App\Anser\Orchestrators\V2\CreateOrderOrchestrator;
-use Psr\Log\LoggerInterface;
-use Hyperf\Logger\LoggerFactory;
+// use Psr\Log\LoggerInterface;
+// use Hyperf\Logger\LoggerFactory;
+use App\Utils\Log;
 
 class IndexController extends AbstractController
 {
-    protected LoggerInterface $logger;
-
-    public function __construct(LoggerFactory $loggerFactory)
-    {
-        $this->logger = $loggerFactory->get('log', 'default');
-    }
     public function index()
     {
         $user = $this->request->input('user', 'Hyperf');
@@ -46,7 +41,8 @@ class IndexController extends AbstractController
 
 		$data = $createOrder->build($products, $memberKey);
 	    $result = $data ?? ["order_key" => $createOrder->orderKey];
-        $this->logger->info(json_encode($result));
+        Log::getInstance()->info(json_encode($result));
+        // $this->logger->info(json_encode($result));
         return $this->response->json($result);
     }
 }

@@ -7,7 +7,7 @@ use SDPMlab\Anser\Service\Action;
 use SDPMlab\Anser\Exception\ActionException;
 use Psr\Http\Message\ResponseInterface;
 use SDPMlab\Anser\Service\ActionInterface;
-// use Swoft\Log\Helper\Log;
+use App\Utils\Log;
 
 class Order extends SimpleService
 {
@@ -57,19 +57,22 @@ class Order extends SimpleService
             $errorResult = $e->getResponse()->getBody();
             $data = json_decode($errorResult, true);
             if ($e->isServerError()) {
+                Log::getInstance()->error($e->getMessage());
                 // Log::error($e->getMessage());
                 $e->getAction()->setMeaningData([]);
             }
 
             if ($e->isClientError()) {
                 $errorResult = $errorResult->getContents();
-                $data = json_decode($errorResult, true);
+                // $data = json_decode($errorResult, true);
+                Log::getInstance()->alert($e->getMessage());
                 // Log::alert($e->getMessage());
                 $e->getAction()->setMeaningData([]);
             }
 
             if ($e->isConnectError()) {
                 // Log::emergency($e->getMessage());
+                Log::getInstance()->emergency($e->getMessage());
                 $e->getAction()->setMeaningData([]);
             }
         });
@@ -102,20 +105,22 @@ class Order extends SimpleService
                 $errorResult = $e->getResponse()->getBody();
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
-                    
+                    Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isClientError()) {
                     $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
+                    // $data = json_decode($errorResult, true);
+                    Log::getInstance()->alert($e->getMessage());
                     // Log::alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
@@ -160,18 +165,21 @@ class Order extends SimpleService
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
+                    Log::getInstance()->error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isClientError()) {
                     $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
+                    // $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
+                    Log::getInstance()->alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
@@ -217,19 +225,22 @@ class Order extends SimpleService
                 $errorResult = $e->getResponse()->getBody();
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
+                    Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isClientError()) {
                     $errorResult = $e->getResponse()->getBody()->getContents();
-                    $data = json_decode($errorResult, true);
+                    // $data = json_decode($errorResult, true);
+                    Log::getInstance()->alert($e->getMessage());
                     // Log::alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
@@ -263,6 +274,7 @@ class Order extends SimpleService
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
+                    Log::getInstance()->error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
@@ -270,11 +282,13 @@ class Order extends SimpleService
                     $errorResult = $errorResult->getContents();
                     $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
+                    Log::getInstance()->alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });

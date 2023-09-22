@@ -7,7 +7,7 @@ use SDPMlab\Anser\Service\Action;
 use Psr\Http\Message\ResponseInterface;
 use SDPMlab\Anser\Exception\ActionException;
 use SDPMlab\Anser\Service\ActionInterface;
-// use Swoft\Log\Helper\Log;
+use App\Utils\Log;
 
 class Inventory extends SimpleService
 {
@@ -58,6 +58,7 @@ class Inventory extends SimpleService
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
+                    Log::getInstance()->error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
@@ -65,11 +66,13 @@ class Inventory extends SimpleService
                     $errorResult = $errorResult->getContents();
                     $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
+                    Log::getInstance()->alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
@@ -112,6 +115,7 @@ class Inventory extends SimpleService
                 $errorResult = $e->getResponse()->getBody();
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
+                    Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
@@ -120,11 +124,13 @@ class Inventory extends SimpleService
                     $errorResult = $errorResult->getContents();
                     $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
+                    Log::getInstance()->alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
@@ -154,6 +160,7 @@ class Inventory extends SimpleService
                 $errorResult = $e->getResponse()->getBody();
                 $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
+                    Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
@@ -161,12 +168,14 @@ class Inventory extends SimpleService
                 if ($e->isClientError()) {
                     $errorResult = $errorResult->getContents();
                     $data = json_decode($errorResult, true);
+                    Log::getInstance()->alert($e->getMessage());
                     // Log::alert($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
+                    Log::getInstance()->emergency($e->getMessage());
                     $e->getAction()->setMeaningData([]);
                 }
             });
