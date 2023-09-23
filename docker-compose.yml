@@ -6,8 +6,11 @@ services:
       context: "."
     ports:
       - 8080:9501
+    volumes:
+      - ./:/opt/www
     environment:
       APP_ENV: "${APP_ENV:-prod}"
+      SCAN_CACHEABLE: "false"
     restart: "always"
     deploy:
       replicas: 1
