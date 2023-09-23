@@ -37,15 +37,14 @@ class IndexController extends AbstractController
         $data      = $this->request->all();
         $memberKey = $data["memberKey"];
         $products  = $data["products"];
-        Coroutine::create(function () use ($memberKey,$products) {
-            $createOrder = new CreateOrderOrchestrator();
 
-            $data = $createOrder->build($products, $memberKey);
-            $result = $data ?? ["order_key" => $createOrder->orderKey];
-            Log::getInstance()->info(json_encode($result));
-            // $this->logger->info(json_encode($result));
-            return $this->response->json($result);
-        });
+        $createOrder = new CreateOrderOrchestrator();
+
+        $data = $createOrder->build($products, $memberKey);
+        $result = $data ?? ["order_key" => $createOrder->orderKey];
+        Log::getInstance()->info(json_encode($result));
+        // $this->logger->info(json_encode($result));
+        return $this->response->json($result);
         
 
         

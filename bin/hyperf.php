@@ -17,7 +17,7 @@ date_default_timezone_set('Asia/Shanghai');
 ! defined('BASE_PATH') && define('BASE_PATH', dirname(__DIR__, 1));
 require BASE_PATH . '/vendor/autoload.php';
 ! defined('SWOOLE_HOOK_FLAGS') && define('SWOOLE_HOOK_FLAGS', \Hyperf\Engine\DefaultOption::hookFlags());
-require BASE_PATH . '/app/Anser/ServiceList.php';
+
 // Self-called anonymous function that creates its own scope and keep the global namespace clean.
 (function () {
     Hyperf\Di\ClassLoader::init(handler: new Hyperf\Di\ScanHandler\ProcScanHandler());
@@ -25,5 +25,6 @@ require BASE_PATH . '/app/Anser/ServiceList.php';
     $container = require BASE_PATH . '/config/container.php';
     /** @var Symfony\Component\Console\Application $application */
     $application = $container->get(Hyperf\Contract\ApplicationInterface::class);
+    require BASE_PATH . '/app/Anser/ServiceList.php';
     $application->run();
 })();
