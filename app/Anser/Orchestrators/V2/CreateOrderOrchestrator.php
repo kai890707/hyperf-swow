@@ -10,7 +10,7 @@ use App\Anser\Services\V2\ProductService\Product;
 use App\Anser\Services\V2\ProductService\Inventory;
 use SDPMlab\Anser\Orchestration\OrchestratorInterface;
 use SDPMlab\Anser\Orchestration\Saga\Cache\CacheFactory;
-
+use App\Utils\Log;
 class CreateOrderOrchestrator extends Orchestrator
 {
     /**
@@ -168,6 +168,23 @@ class CreateOrderOrchestrator extends Orchestrator
             $data["data"]["isCompensationSuccess"] = $this->isCompensationSuccess();
         }
 
+        return $data;
+    }
+
+    protected function defineFailResult(): array
+    {
+        $data = [];
+        $failMsg = [];
+        foreach ($this->getFailActions() as $key => $value) {
+            if($this->getStepAction($key)->isSuccess() == false){
+                $fail = $this->getStepAction($key)->getMeaningData();
+                // Log::getInstance()->info("createOrder".(string)$fail);
+                // array_push($failMsg,$fail);
+                $data['fail'][$key] = $fail;
+            }
+        }
+        $data['msg'] = 'fail';
+        // $data['fail'] = [$this->getFailActions(),$failMsg];
         return $data;
     }
 }

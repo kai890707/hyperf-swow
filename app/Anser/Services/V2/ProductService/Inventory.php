@@ -54,26 +54,61 @@ class Inventory extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ){
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
+                // Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                // $e->getAction()->setMeaningData([
+                //     "code" => 500,
+                //     "msg" => "error"
+                // ]);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
-                    Log::getInstance()->error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->error($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionServerError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
-                    Log::getInstance()->alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->alert($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionClientError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionConnectError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;
@@ -112,26 +147,58 @@ class Inventory extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ){
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
+                // Log::getInstance()->info((string)$e->getAction()->getResponse()->getBody()->getContents());
+
                 if ($e->isServerError()) {
-                    Log::getInstance()->error($e->getMessage());
+                    // Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionServerError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
                     // Log::alert($e->getMessage());
-                    Log::getInstance()->alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->alert($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionClientError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionConnectError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;
@@ -157,26 +224,58 @@ class Inventory extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ) {
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
+                // $e->getAction()->setMeaningData([$e->getMessage()]);
+                
                 if ($e->isServerError()) {
-                    Log::getInstance()->error($e->getMessage());
+                    // Log::getInstance()->error($e->getMessage());
                     // Log::error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionServerError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
-                    Log::getInstance()->alert($e->getMessage());
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
+                    // Log::getInstance()->alert($e->getMessage());
                     // Log::alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionClientError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([$e->getMessage()]);
+                    // file_put_contents(BASE_PATH . '/runtime/actionConnectError.log' ,"[" . date("Y-m-d H:i:s") . "]" . $e->getMessage() . PHP_EOL , FILE_APPEND);
+                    // $e->getAction()->setMeaningData([
+                    //     "code" => 500,
+                    //     "msg" => $e->getMessage()
+                    // ]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;

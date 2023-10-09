@@ -39,26 +39,42 @@ class Wallet extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ) {
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+                
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
-                    Log::getInstance()->error($e->getMessage());
-                    // Log::error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->error($e->getMessage());
+                    // // Log::error($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
-                    Log::getInstance()->alert($e->getMessage());
-                    // Log::alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
+                    // Log::getInstance()->alert($e->getMessage());
+                    // // Log::alert($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;
@@ -90,26 +106,42 @@ class Wallet extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ){
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
-                    Log::getInstance()->error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->error($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
-                    // Log::alert($e->getMessage());
-                    Log::getInstance()->alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
+                    // // Log::alert($e->getMessage());
+                    // Log::getInstance()->alert($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
                     // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;
@@ -141,26 +173,42 @@ class Wallet extends SimpleService
             ->failHandler(function (
                 ActionException $e
             ){
-                $errorResult = $e->getResponse()->getBody();
-                $data = json_decode($errorResult, true);
+                
+                // $errorResult = $e->getResponse()->getBody();
+                // $data = json_decode($errorResult, true);
                 if ($e->isServerError()) {
                     // Log::error($e->getMessage());
-                    Log::getInstance()->error($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // Log::getInstance()->error($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isClientError()) {
-                    $errorResult = $errorResult->getContents();
-                    $data = json_decode($errorResult, true);
-                    // Log::alert($e->getMessage());
-                    Log::getInstance()->alert($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // $errorResult = $errorResult->getContents();
+                    // $data = json_decode($errorResult, true);
+                    // // Log::alert($e->getMessage());
+                    // Log::getInstance()->alert($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getAction()->getResponse()->getBody()->getContents());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getAction()->getResponse()->getBody()->getContents()
+                    ]);
                 }
 
                 if ($e->isConnectError()) {
-                    // Log::emergency($e->getMessage());
-                    Log::getInstance()->emergency($e->getMessage());
-                    $e->getAction()->setMeaningData([]);
+                    // // Log::emergency($e->getMessage());
+                    // Log::getInstance()->emergency($e->getMessage());
+                    // $e->getAction()->setMeaningData([]);
+                    Log::getInstance()->info($e->getMessage());
+                    $e->getAction()->setMeaningData([
+                        "code" => 500,
+                        "msg" => $e->getMessage()
+                    ]);
                 }
             });
         return $action;

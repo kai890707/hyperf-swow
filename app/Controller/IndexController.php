@@ -17,17 +17,17 @@ use App\Anser\Orchestrators\V2\CreateOrderOrchestrator;
 // use Hyperf\Logger\LoggerFactory;
 use App\Utils\Log;
 use Hyperf\Utils\Coroutine;
-
+use Hyperf\Logger\LoggerFactory;
+use Hyperf\Utils\ApplicationContext;
 class IndexController extends AbstractController
 {
     public function index()
     {
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
-
+        Log::getInstance()->info(json_encode(123));
         return [
             'method' => $method,
-            'message' => "Hello123 {$user}.",
         ];
     }
 
