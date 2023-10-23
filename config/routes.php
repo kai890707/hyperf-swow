@@ -13,3 +13,7 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController::index');
 Router::addRoute(['GET'], '/createOrder', 'App\Controller\IndexController::createOrder');
+Router::addRoute(['GET'], '/products', 'App\Controller\IndexController::products');
+Router::addRoute(['GET'], '/test', 'App\Controller\IndexController::test');
+Router::addRoute(['GET'], '/test1', 'App\Controller\IndexController::index1');
+Router::addRoute(['GET'], '/getUsers', 'App\Controller\IndexController::getUsers');

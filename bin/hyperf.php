@@ -25,6 +25,6 @@ require BASE_PATH . '/vendor/autoload.php';
     $container = require BASE_PATH . '/config/container.php';
     /** @var Symfony\Component\Console\Application $application */
     $application = $container->get(Hyperf\Contract\ApplicationInterface::class);
-    require BASE_PATH . '/app/Anser/ServiceList.php';
+    // require BASE_PATH . '/app/Anser/ServiceList.php';
     $application->run();
 })();

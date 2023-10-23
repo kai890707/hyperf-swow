@@ -27,9 +27,4 @@ return [
             ],
         ],
     ],
-    'settings' => [
-        // Constant::OPTION_WORKER_NUM => 8,
-        'worker_num' => 8,
-        // ...
-    ],
 ];
